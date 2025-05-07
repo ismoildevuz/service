@@ -4,11 +4,11 @@ import FormPage from "@app/pages/form/Form"
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element: <HomePage />,
   },
   {
-    path: "/form",
+    path: "/",
     element: <FormPage />,
   },
 ])

@@ -12,7 +12,7 @@ export default () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-      navigate("/form")
+      navigate("/")
     }, 3000)
   }
 
