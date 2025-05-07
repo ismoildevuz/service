@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Management</title>
+    <!-- React and ReactDOM -->
+    <script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.development.js"></script>
+    <!-- Ant Design CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/antd@4.24.8/dist/antd.min.css"
+    />
+    <!-- Ant Design -->
+    <script src="https://cdn.jsdelivr.net/npm/antd@4.24.8/dist/antd.min.js"></script>
+    <!-- Ant Design Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/@ant-design/icons@4.7.0/dist/index.umd.min.js"></script>
+    <!-- Moment.js for DatePicker -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script>
+      // Expose moment to global scope for Ant Design components
+      window.moment = moment;
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        background: #f5f5f5;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .section {
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #333;
+      }
+      .ant-form-item {
+        margin-bottom: 12px;
+      }
+      .ant-select,
+      .ant-input,
+      .ant-picker {
+        width: 100%;
+      }
+      .save-button {
+        width: 100%;
+        background: #1890ff;
+        border: none;
+        height: 40px;
+        border-radius: 8px;
+      }
+      .save-button:hover {
+        background: #40a9ff;
+      }
+      .button-section {
+        grid-column: span 2;
+        text-align: center;
+      }
+      @media (max-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .button-section {
+          grid-column: span 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      const { Form, Select, DatePicker, Upload, Button, message } = antd;
+      const { Option } = Select;
+      const { UploadOutlined } = icons;
+
+      const ServiceManagement = () => {
+        const onFinish = (values) => {
+          console.log("Received values:", values);
+          message.success("Form submitted successfully!");
+        };
+
+        const onFinishFailed = (errorInfo) => {
+          console.log("Failed:", errorInfo);
+        };
+
+        const uploadProps = {
+          beforeUpload: (file) => {
+            const isImage = file.type.startsWith("image/");
+            if (!isImage) {
+              message.error("You can only upload image files!");
+            }
+            return isImage || Upload.LIST_IGNORE; // Prevent upload if not an image
+          },
+          onChange: (info) => {
+            if (info.file.status === "done") {
+              message.success(`${info.file.name} uploaded successfully`);
+            } else if (info.file.status === "error") {
+              message.error(`${info.file.name} upload failed`);
+            }
+          },
+        };
+
+        return React.createElement(
+          "div",
+          { className: "container" },
+          React.createElement(
+            Form,
+            {
+              name: "service_management_form",
+              onFinish: onFinish,
+              onFinishFailed: onFinishFailed,
+              layout: "vertical",
+            },
+            React.createElement(
+              "div",
+              { className: "form-grid" },
+              React.createElement(
+                "div",
+                { className: "section" },
+                React.createElement(
+                  "div",
+                  { className: "section-title" },
+                  "Company Information"
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    label: "Korxona (Company)",
+                    name: "korxona",
+                    rules: [
+                      { required: true, message: "Please select a company!" },
+                    ],
+                  },
+                  React.createElement(
+                    Select,
+                    { placeholder: "Select a company" },
+                    React.createElement(
+                      Option,
+                      { value: "164-son Qo'gon temir yo'l mashina bekati" },
+                      "164-son Qo'gon temir yo'l mashina bekati"
+                    ),
+                    React.createElement(
+                      Option,
+                      { value: "AnyDesk manzili: 1234567890" },
+                      "AnyDesk manzili: 1234567890"
+                    )
+                  )
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    label: "Xodim (Employee)",
+                    name: "xodim",
+                    rules: [
+                      { required: true, message: "Please select an employee!" },
+                    ],
+                  },
+                  React.createElement(
+                    Select,
+                    { placeholder: "Select an employee" },
+                    React.createElement(
+                      Option,
+                      { value: "4301-tiklsh poyezdi" },
+                      "4301-tiklsh poyezdi"
+                    ),
+                    React.createElement(
+                      Option,
+                      { value: "RAdmin manzili: 9876543210" },
+                      "RAdmin manzili: 9876543210"
+                    )
+                  )
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    label: "Stansiya (Station)",
+                    name: "stansiya",
+                    rules: [
+                      { required: true, message: "Please select a station!" },
+                    ],
+                  },
+                  React.createElement(
+                    Select,
+                    { placeholder: "Select a station" },
+                    React.createElement(
+                      Option,
+                      { value: "ABADAN tur" },
+                      "ABADAN tur"
+                    ),
+                    React.createElement(
+                      Option,
+                      { value: "UPS: No UPS" },
+                      "UPS: No UPS"
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "section" },
+                React.createElement(
+                  "div",
+                  { className: "section-title" },
+                  "Computer Details"
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    label: "Kompyuter turi (Computer Type)",
+                    name: "kompyuter_turi",
+                    rules: [
+                      {
+                        required: true,
+                        message: "Please select a computer type!",
+                      },
+                    ],
+                  },
+                  React.createElement(
+                    Select,
+                    { placeholder: "Select a computer type" },
+                    React.createElement(
+                      Option,
+                      { value: "Noutbuk" },
+                      "Noutbuk"
+                    ),
+                    React.createElement(
+                      Option,
+                      { value: "Monitor: FHD+" },
+                      "Monitor: FHD+"
+                    )
+                  )
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    label: "Printer",
+                    name: "printer",
+                    rules: [
+                      {
+                        required: true,
+                        message: "Please select a printer option!",
+                      },
+                    ],
+                  },
+                  React.createElement(
+                    Select,
+                    { placeholder: "Select a printer option" },
+                    React.createElement(
+                      Option,
+                      { value: "Printer" },
+                      "Printer"
+                    ),
+                    React.createElement(
+                      Option,
+                      { value: "Inventar raqami: 0123" },
+                      "Inventar raqami: 0123"
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "section" },
+                React.createElement(
+                  "div",
+                  { className: "section-title" },
+                  "Scheduling"
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    label: "Kirim bo'lgan vaqt (Received Date)",
+                    name: "received_date",
+                    rules: [
+                      { required: true, message: "Please select a date!" },
+                    ],
+                  },
+                  React.createElement(DatePicker, {
+                    defaultValue: moment("2025-05-07", "YYYY-MM-DD"),
+                    format: "YYYY-MM-DD",
+                  })
+                ),
+                React.createElement(
+                  Form.Item,
+                  { label: "Additional Date", name: "additional_date" },
+                  React.createElement(DatePicker, {
+                    defaultValue: moment("2025-05-01", "YYYY-MM-DD"),
+                    format: "YYYY-MM-DD",
+                  })
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "section" },
+                React.createElement(
+                  "div",
+                  { className: "section-title" },
+                  "Computer Image"
+                ),
+                React.createElement(
+                  Form.Item,
+                  {
+                    name: "computer_image",
+                    valuePropName: "fileList",
+                    getValueFromEvent: (e) => (e && e.fileList) || [],
+                    rules: [
+                      { required: true, message: "Please upload an image!" },
+                    ],
+                  },
+                  React.createElement(
+                    Upload,
+                    { ...uploadProps, listType: "picture", maxCount: 1 },
+                    React.createElement(
+                      Button,
+                      { icon: React.createElement(UploadOutlined) },
+                      "Browse..."
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                "div",
+                { className: "button-section" },
+                React.createElement(
+                  Form.Item,
+                  null,
+                  React.createElement(
+                    Button,
+                    {
+                      type: "primary",
+                      htmlType: "submit",
+                      className: "save-button",
+                    },
+                    "Saqlamoq"
+                  )
+                )
+              )
+            )
+          )
+        );
+      };
+
+      ReactDOM.render(
+        React.createElement(ServiceManagement),
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
