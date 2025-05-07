@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
-import { HomePage } from "@app/pages/home"
-import { FormPage } from "@app/pages/form"
+import HomePage from "@app/pages/home/Home"
+import FormPage from "@app/pages/form/Form"
 
 export const router = createBrowserRouter([
   {
