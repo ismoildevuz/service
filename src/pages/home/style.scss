@@ -1,0 +1,26 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-card {
+    width: 400px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-logo {
+    font-size: 48px;
+    text-align: center;
+}
+
+.login-title {
+    margin-top: 0;
+    text-align: center;
+}
+
+.login-subtitle {
+    text-align: center;
+}
