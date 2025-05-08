@@ -1,6 +1,11 @@
 import { RouterProvider } from "react-router-dom"
 import { router } from "@app/router"
+import { ConfigProvider } from "antd"
 
 export const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <ConfigProvider>
+      <RouterProvider router={router} />
+    </ConfigProvider>
+  )
 }
