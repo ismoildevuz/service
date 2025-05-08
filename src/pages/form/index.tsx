@@ -11,7 +11,7 @@ import {
 import { PlusOutlined } from "@ant-design/icons"
 import "./style.scss"
 
-export default () => {
+const FormPage = () => {
   const [form] = Form.useForm()
 
   return (
@@ -77,72 +77,16 @@ export default () => {
           <Card className="form-card">
             <div className="form-group">
               <Form.Item label="Kompyuter turi" name="type">
-                <Select
-                  placeholder="Tanlang"
-                  showSearch
-                  optionFilterProp="label"
-                  options={[
-                    {
-                      value: "1",
-                      label: "Noutbuk",
-                    },
-                    {
-                      value: "2",
-                      label: "Shaxsiy",
-                    },
-                  ]}
-                />
+                <Input placeholder="Kiriting" />
               </Form.Item>
               <Form.Item label="UPS" name="ups">
-                <Select
-                  placeholder="Tanlang"
-                  showSearch
-                  optionFilterProp="label"
-                  options={[
-                    {
-                      value: "1",
-                      label: "UPS Yo'q",
-                    },
-                    {
-                      value: "2",
-                      label: "UPS Bor",
-                    },
-                  ]}
-                />
+                <Input placeholder="Kiriting" />
               </Form.Item>
               <Form.Item label="Monitor" name="monitor">
-                <Select
-                  placeholder="Tanlang"
-                  showSearch
-                  optionFilterProp="label"
-                  options={[
-                    {
-                      value: "1",
-                      label: "FHD+",
-                    },
-                    {
-                      value: "2",
-                      label: "HD",
-                    },
-                  ]}
-                />
+                <Input placeholder="Kiriting" />
               </Form.Item>
               <Form.Item label="Printer" name="printer">
-                <Select
-                  placeholder="Tanlang"
-                  showSearch
-                  optionFilterProp="label"
-                  options={[
-                    {
-                      value: "1",
-                      label: "Printer Yo'q",
-                    },
-                    {
-                      value: "2",
-                      label: "HP LaserJet",
-                    },
-                  ]}
-                />
+                <Input placeholder="Kiriting" />
               </Form.Item>
             </div>
           </Card>
@@ -191,3 +135,5 @@ export default () => {
     </div>
   )
 }
+
+export default FormPage

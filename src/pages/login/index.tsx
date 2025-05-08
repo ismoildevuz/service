@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { Button, Card, Form, Input, Typography } from "antd"
 import { LockOutlined, UserOutlined } from "@ant-design/icons"
-import "./style.scss"
 import { useNavigate } from "react-router-dom"
+import "./style.scss"
 
-export default () => {
+const LoginPage = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
@@ -63,3 +63,5 @@ export default () => {
     </div>
   )
 }
+
+export default LoginPage
